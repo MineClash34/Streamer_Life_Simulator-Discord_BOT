@@ -1,0 +1,22 @@
+{
+  "name": "streamer-life-simulator",
+  "version": "0.0.1",
+  "description": "A Streamer Life Simulator Discord BOT !",
+  "main": "index.js",
+  "scripts": {
+    "test": "/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "/"
+  },
+  "keywords": [
+    "/"
+  ],
+  "author": "Mine_Clash_34",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0"
+  }
+}
