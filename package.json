@@ -17,6 +17,9 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^12.2.0",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "enmap": "^5.4.1",
+    "fs": "0.0.1-security",
+    "pm2": "^4.4.0"
   }
 }
