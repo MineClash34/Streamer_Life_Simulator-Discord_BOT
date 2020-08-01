@@ -12,11 +12,11 @@ Events binding
 */
 
 fs.readdir("./events/", (err, files) => {
-    if (err) return console.error(err);
+    if (err) return console.error(err["red"]);
     files.forEach(file => {
         const event = require(`./events/${file}`);
         let eventName = file.split(".")[0];
-        client.on(eventName, event.bind(null, client));
+        client.on(eventName, event.bind(null, client, fs));
     });
 });
   
@@ -27,7 +27,7 @@ Création et enregistrement des commandes
   client.commands = new Enmap(); //Command's maping
   
 fs.readdir("./commandes/", (err, folders) => {
-    if (err) return console.error(err);
+    if (err) return console.error(err["red"]);
     folders.forEach(folder => {
         fs.readdir("./commandes/" + folder + "/", (err, files) =>{
             files.forEach(file => {
