@@ -1,6 +1,7 @@
 const Lang = require("../lang/fr.json");
 const commandList = require("../index.js").cmdList
 const getRandomColor = require("../function/getRandomColor.js");
+const addEmoji = require("../function/addEmoji.js")
 module.exports = async (client, message) => {
     if (message.channel.type === "dm") return;
     if (message.author.bot) return;
@@ -15,5 +16,5 @@ module.exports = async (client, message) => {
     const cmd = client.commands.get(commandFilter.join(""));
     if (!cmd) return;
     const args = message.content.split(" ");
-    cmd.run(message, Lang, args, getRandomColor, client);
+    cmd.run(message, Lang, args, getRandomColor, client, addEmoji);
 };

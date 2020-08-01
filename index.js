@@ -43,6 +43,10 @@ fs.readdir("./commandes/", (err, folders) => {
     });
 });
 
+var a = "abc"
+var test = process.env.TEST 
+console.log(test)
+
 module.exports = {
     cmdList: commandList
 }

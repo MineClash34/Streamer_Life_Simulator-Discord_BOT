@@ -1,3 +1,13 @@
 {
-    "ManyCommandsFind": "Plusieurs commandes trouvées."
+    "ManyCommandsFind": "Plusieurs commandes trouvées.",
+    "Channel": "Chaîne",
+    "CreatedThe": "Créée le",
+    "Subscriber": "abonnés",
+    "Owner": "Créateur",
+    "Stats": "Statistiques",
+    "Up": "Levés",
+    "OtherInformation": "Information Divers",
+    "Money": "Argent",
+    "CurrentGame": "Jeu actuel",
+    "GPHouse": "Maison du Grand-Père"
 }
