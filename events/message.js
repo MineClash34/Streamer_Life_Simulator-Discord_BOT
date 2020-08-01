@@ -1,5 +1,5 @@
 var commandList = [];
-const Lang = require("./lang/fr.json");
+const Lang = require("../lang/fr.json");
 module.exports = async (fs, client, message) => {
     if (message.channel.type === "dm") return;
     if (message.author.bot) return;
