@@ -35,7 +35,7 @@ fs.readdir("./commandes/", (err, folders) => {
                 if (!file.endsWith(".js")) return;
                 let props = require(`./commandes/${folder}/${file}`);
                 let commandName = file.replace(".js", "");
-                console.log(`${`Chargement de la commande :`["cyan"]} ${`${commandName}`["green"]} ${`en cours`["cyan"]}`);
+                console.log(`${`[${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}]`["yellow"]} ${`Chargement de la commande :`["cyan"]} ${`${commandName}`["green"]["underline"]} ${`en cours`["cyan"]}.`);
                 commandList.unshift(commandName)
                 client.commands.set(commandName, props);
             });
