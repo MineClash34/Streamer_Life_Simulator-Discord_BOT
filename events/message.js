@@ -1,6 +1,6 @@
 var commandList = [];
 const Lang = require("./lang/fr.json");
-export default async (fs, client, message) => {
+module.exports = async (fs, client, message) => {
     if (message.channel.type === "dm") return;
     if (message.author.bot) return;
     if (message.content[0] !== process.env.Prefix) return;
