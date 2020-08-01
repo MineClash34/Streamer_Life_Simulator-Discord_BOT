@@ -1,29 +1,19 @@
-var commandList = [];
 const Lang = require("../lang/fr.json");
-module.exports = async (fs, client, message) => {
+const commandList = require("../index.js").cmdList
+const getRandomColor = require("../function/getRandomColor.js");
+module.exports = async (client, message) => {
     if (message.channel.type === "dm") return;
     if (message.author.bot) return;
     if (message.content[0] !== process.env.Prefix) return;
     if (message.content.length === 1) return;
-    fs.readdir("./commandes/", (err, folders) => {
-        if (err) return console.error(err["red"]);
-        folders.forEach(folder => {
-            fs.readdir("./commandes/" + folder + "/", (err, files) => {
-                files.forEach(file => {
-                    if (!file.endsWith(".js")) return;
-                    commandList.unshift(file.replace(".js", ""));
-                });
-            });
-        });
-    });
+    var requete = message.content.replace("&", "");
     var commandFilter = commandList.filter(command => command.toLowerCase().startsWith(requete.toLowerCase()) === true);
-    if (commandFilter.length === commandsList.length) return;
-    if (commandFilter.length >= 2) return message.reply(Lang.ManyCommandsFind + "```" + CommandFilter.join(", ") + "```").then((BotMessage) => {
+    if (commandFilter.length >= 2) return message.reply(Lang.ManyCommandsFind + "```" + commandFilter.join(", ") + "```").then((BotMessage) => {
         BotMessage.delete({timeout:15000});
         message.delete({timeout:15000});
     });
-    const cmd = client.commands.get(CommandFilter.join(""));
+    const cmd = client.commands.get(commandFilter.join(""));
     if (!cmd) return;
     const args = message.content.split(" ");
-    cmd.run(message, Lang, args)
-}
+    cmd.run(message, Lang, args, getRandomColor, client);
+};
