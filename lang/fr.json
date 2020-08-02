@@ -9,5 +9,7 @@
     "OtherInformation": "Information Divers",
     "Money": "Argent",
     "CurrentGame": "Jeu actuel",
-    "GPHouse": "Maison du Grand-Père"
+    "GPHouse": "Maison du Grand-Père",
+    "Minitel": "Minitel",
+    "NoGraphicProcess": "Pas de carte graphique"
 }

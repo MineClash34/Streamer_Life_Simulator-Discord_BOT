@@ -3,9 +3,9 @@ const client = new Discord.Client();
 require("colors");
 const fs = require("fs");
 const Enmap = require("enmap");
-require('dotenv').config(); //Launch environment config
+require('dotenv').config(); // Launch environment config
 
-client.login(process.env.TOKEN); //Connect bot to discord
+client.login(process.env.TOKEN); // Connect bot to discord
 
 /*
 Events binding
@@ -24,7 +24,7 @@ fs.readdir("./events/", (err, files) => {
 Création et enregistrement des commandes
 */
   
-client.commands = new Enmap(); //Command's maping
+client.commands = new Enmap(); // Command's maping
 const commandList = [];  // Create new array with name of all command, to export
   
 fs.readdir("./commandes/", (err, folders) => {
@@ -42,10 +42,6 @@ fs.readdir("./commandes/", (err, folders) => {
         });
     });
 });
-
-var a = "abc"
-var test = process.env.TEST 
-console.log(test)
 
 module.exports = {
     cmdList: commandList
