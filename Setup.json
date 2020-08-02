@@ -1,8 +1,0 @@
-{
-    "Minitel": {
-        "Name": "Minitel",
-        "Ram": "512Mo RAM DDR1",
-        "NoGraphicProcess": "No",
-        "Quality": "180p"
-    }
-}

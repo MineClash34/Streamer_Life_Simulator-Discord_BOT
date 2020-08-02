@@ -13,8 +13,10 @@ Events binding
 */
 
 fs.readdir("./events/", (err, files) => {
+    console.log(files)
     if (err) return console.error(err["red"]);
     files.forEach(file => {
+        console.log(file)
         const event = require(`./events/${file}`);
         let eventName = file.split(".")[0];
         client.on(eventName, event.bind(null, client));
