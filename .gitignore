@@ -4,6 +4,8 @@
 # Node.js, npm
 /node_modules
 /package-lock.json
+
+# Other
 /oldlang.json
 /image
 /data
