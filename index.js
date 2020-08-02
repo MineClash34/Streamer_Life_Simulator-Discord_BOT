@@ -3,6 +3,7 @@ const client = new Discord.Client();
 require("colors");
 const fs = require("fs");
 const Enmap = require("enmap");
+client.options.fetchAllMembers = true
 require('dotenv').config(); // Launch environment config
 
 client.login(process.env.TOKEN); // Connect bot to discord
