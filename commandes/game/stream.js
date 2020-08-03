@@ -1,10 +1,10 @@
 const Discord = require("discord.js");
 const commentaire = require("../../data/commentaire.json").comList;
-var commentaireInterval = null;
-var goodResponse = 0
-var totalCom = 0
-var comType = null;
 exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup) => {
+    var commentaireInterval = null;
+    var goodResponse = 0
+    var totalCom = 0
+    var comType = null;
     var nextCommentaire = Math.round(Math.random() * 3) + 2;
     message.channel.send(Lang.StreamStart).then(async (StreamMessage) => {
         await StreamMessage.react("739210690450948107");
@@ -21,7 +21,7 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
                     StreamMessage.edit(randomCommentaire.com);
                 } else nextCommentaire--;
         }, 1000);
-        StreamMessage.awaitReactions(filter, {time: 65000, errors: ['time']})
+        StreamMessage.awaitReactions(filter, {max: 100, time: 65000, errors: ['time']})
         .then(collected => {
             const reaction = collected.first();
             if (reaction.emoji.id === "739210690450948107") {
@@ -31,6 +31,8 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
             };
         }).catch(collected => {
             clearInterval(commentaireInterval);
+            console.log(goodResponse)
+            console.log(totalCom)
             StreamMessage.edit(`Stream fini ! Ambiance : ${goodResponse * 100 / totalCom}.`);
         });
     });

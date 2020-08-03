@@ -1,11 +1,27 @@
+/*
+JSON file
+*/
+
 const Lang = require("../lang/fr.json");
-const commandList = require("../index.js").cmdList;
+const Setup = require("../data/Setup.json");
+
+/*
+Function
+*/
+
 const getRandomColor = require("../function/getRandomColor.js");
 const addEmoji = require("../function/addEmoji.js");
 const getDBConnection = require("../function/getDBConnection.js");
 const getProfilElement = require("../function/getProfilElement.js");
 const register = require("../function/register.js");
-const Setup = require("../data/Setup.json");
+const CleanText = require("../function/CleanText.js")
+
+/*
+Other
+*/
+
+const commandList = require("../index.js").cmdList;
+
 module.exports = async (client, message) => {
     if (message.channel.type === "dm") return;
     if (message.author.bot) return;
@@ -22,6 +38,6 @@ module.exports = async (client, message) => {
     getDBConnection.query(`SELECT * FROM profile WHERE DiscordID = ${message.author.id}`, function(err, result) {
         if (result.length <= 0) return register(message);
         const args = message.content.split(" ");
-        cmd.run(message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup);
+        cmd.run(message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText);
     });
 };
