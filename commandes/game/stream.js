@@ -20,7 +20,7 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
                     comType = randomCommentaire.type;
                     StreamMessage.edit(randomCommentaire.com);
                 } else nextCommentaire--;
-        }, 5000);
+        }, 1000);
         StreamMessage.awaitReactions(filter, {time: 65000, errors: ['time']})
         .then(collected => {
             const reaction = collected.first();
