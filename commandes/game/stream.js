@@ -9,7 +9,7 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
         let filter = (reaction, userReact) => {
             return ["739210690450948107", "739211087206940742"].includes(reaction.emoji.id) && userReact.id === message.author.id;
         };
-        FirstMessage.awaitReactions(filter, {time: 65000, errors: ['time']})
+        StreamMessage.awaitReactions(filter, {time: 65000, errors: ['time']})
         .then(collected => {
             const reaction = collected.first();
             let commentaireInterval = setInterval(function() {
