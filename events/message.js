@@ -27,7 +27,7 @@ module.exports = async (client, message) => {
     if (message.author.bot) return;
     if (message.content[0] !== process.env.PREFIX) return;
     if (message.content.length === 1) return;
-    var requete = message.content.replace("&", "");
+    var requete = message.content.replace("&", "").split(" ")[0];
     var commandFilter = commandList.filter(command => command.toLowerCase().startsWith(requete.toLowerCase()) === true);
     if (commandFilter.length >= 2) return message.reply(Lang.ManyCommandsFind + "```" + commandFilter.join(", ") + "```").then((BotMessage) => {
         BotMessage.delete({timeout:15000});

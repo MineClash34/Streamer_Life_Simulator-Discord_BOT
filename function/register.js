@@ -1,6 +1,6 @@
 const insertDB = require("./insertDB.js")
 module.exports = function(message) {
-    message.reply("\n:flag_gb: Hello and Welcome in **SLS : Streamer Life Simulator**! To start, please select in which language you want to play, it can be changed later.\n\n:flag_fr: Bonjour et Bienvenue dans SLS : Streamer Life Simulator ! Pour commencer, veuillez m'indiquer dans quel langue vous souhaitez jouer ! Celui-ci peut être changer plus tard.").then(async (FirstMessage) => {
+    message.reply("\n:flag_gb: Hello and Welcome in **SLS : Streamer Life Simulator**! To start, please select in which language you want to play, it can be changed later.\n\n:flag_fr: Bonjour et Bienvenue dans **SLS : Streamer Life Simulator** ! Pour commencer, veuillez m'indiquer dans quel langue vous souhaitez jouer ! Celui-ci peut être changer plus tard.").then(async (FirstMessage) => {
         await FirstMessage.react("🇬🇧");
         await FirstMessage.react("🇫🇷");
         let filter = (reaction, userReact) => {
@@ -12,11 +12,11 @@ module.exports = function(message) {
             if (reaction.emoji.name === "🇫🇷") {
                 let Lang = require("../lang/fr.json");
                 insertDB("fr", message);
-                message.channel.send(Lang.FirstStepReg);
+                message.channel.send(Lang.FirstStepReg.replace("{mention}", `<@${message.author.id}>`));
             } else if (reaction.emoji.name === "🇬🇧") {
                 let Lang = require("../lang/fr.json");
                 insertDB("en", message);
-                message.channel.send(Lang.FirstStepReg);
+                message.channel.send(Lang.FirstStepReg.replace("{mention}", `<@${message.author.id}>`));
             };
         });
     });
