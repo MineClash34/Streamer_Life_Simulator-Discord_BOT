@@ -16,7 +16,7 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
                 if (nextCommentaire === 0) {
                     totalCom++
                     nextCommentaire = Math.round(Math.random() * 3) + 2;
-                    let randomCommentaire = commentaire[Math.round(Math.random() * commentaire.length)];
+                    let randomCommentaire = commentaire[Math.ceil(Math.random() * commentaire.length) - 1];
                     comType = randomCommentaire.type;
                     StreamMessage.edit(randomCommentaire.com);
                 } else nextCommentaire--;
