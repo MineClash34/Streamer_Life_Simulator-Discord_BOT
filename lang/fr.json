@@ -12,5 +12,6 @@
     "CurrentGame": "Jeu actuel",
     "GPHouse": "Maison du Grand-Père",
     "Minitel": "Minitel",
-    "NoGraphicProcess": "Pas de carte graphique"
+    "NoGraphicProcess": "Pas de carte graphique",
+    "StreamStart": "Le stream va commencer dans 5 secondes."
 }
