@@ -6,4 +6,5 @@ module.exports = function (emoji) {
     if (emoji.toLowerCase() === "stats") return "<:stats:739235769285214299>"
     if (emoji.toLowerCase() === "plus") return "<:plus:714919232642744340>"
     if (emoji.toLowerCase() === "computer") return "<:computer:739239839412781076>"
+    if (emoji.toLowerCase() === "like") return "<:Like:739967464087224352>"
 };

@@ -13,5 +13,10 @@
     "GPHouse": "Maison du Grand-Père",
     "Minitel": "Minitel",
     "NoGraphicProcess": "Pas de carte graphique",
-    "StreamStart": "Le stream va commencer dans 5 secondes."
+    "ComWillSpawned": "Des commentaires vont bientôt apparaître.",
+    "StreamEnd": "Streaming fini.\n**Titre** : **Venez jouer à {game} avec moi !**",
+    "Views": "Vues",
+    "Donation": "Donation",
+    "Sponsor": "Partenaire",
+    "Product": "Produits dérivés"
 }
