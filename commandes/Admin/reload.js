@@ -1,4 +1,4 @@
-const commandList = require("../index.js").cmdList;
+const commandList = require("../../index.js").cmdList;
 exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText) => {
     var requete = message.content.split(" ")[1];
     if (!requete) return message.reply("Précise moi une commande :)");
