@@ -1,4 +1,4 @@
-exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText) => {
+exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText, addMaj) => {
     if (!message.author.id === process.env.MYID) return;
     args.shift();
     try {

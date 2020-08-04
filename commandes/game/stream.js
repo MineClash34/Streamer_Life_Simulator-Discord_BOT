@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const commentaire = require("../../data/commentaire.json").comList;
 var streamUser = new Set();
 var streamChannel = new Set();
-exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, addMaj) => {
+exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText, addMaj) => {
     if (streamUser.has(message.author.id)) return message.reply(Lang.YouAlreadyStream);
     if (streamChannel.has(message.channel.id)) return message.reply(Lang.ChannelHasStream);
     streamChannel.add(message.channel.id);
@@ -81,7 +81,7 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
         let endEmbed = new Discord.MessageEmbed()
         .setAuthor(Lang.StreamEnd.replace("{game}", await getProfilElement("Game", message.author.id)), message.author.displayAvatarURL())
         .setColor(0xff3030)
-        .addField(`${addEmoji("stats")} Statistiques`, `**•》** ${Lang.Views} : \`${Viewers}\`\n**•》** ${addMaj(Lang.Subscriber)} : \`${newSubs}\``)
+        .addField(`${addEmoji("stats")} Statistiques`, `**•》** ${Lang.Views} : \`${Viewers}\`\n**•》** ${await addMaj(Lang.Subscriber)} : \`${newSubs}\``)
         .addField(`💰 ${Lang.Money}`, `**•》** ${Lang.Donation} : \`${Donation}\`\n**•》** ${Lang.Sponsor} : \`${Sponsor}\`\n**•》** ${Lang.Product} : \`${Product}\``)
         .addField(`${addEmoji("Like")} \`${Joy}\`%`, `\u200B`)
         .setFooter(`Streamer Life Simulator Bot, By ${process.env.OWNER}`, process.env.PPURL)
