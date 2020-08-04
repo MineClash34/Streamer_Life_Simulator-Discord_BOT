@@ -14,9 +14,11 @@
     "Minitel": "Minitel",
     "NoGraphicProcess": "Pas de carte graphique",
     "ComWillSpawned": "Des commentaires vont bientôt apparaître.",
-    "StreamEnd": "Streaming fini.\n**Titre** : **Venez jouer à {game} avec moi !**",
+    "StreamEnd": "Streaming fini.\nTitre : Venez jouer à {game} avec moi !",
     "Views": "Vues",
     "Donation": "Donation",
     "Sponsor": "Partenaire",
-    "Product": "Produits dérivés"
+    "Product": "Produits dérivés",
+    "YouAlreadyStream": "vous êtes déjà en stream...",
+    "ChannelHasStream": "Il y a déjà un stream en cours dans ce channel. Pour des raisons de **lag**, vous ne pouvez pas lancer plusieurs stream dans un même channel. Veuillez changer de channel ou patienter jusqu'à la fin du stream."
 }
