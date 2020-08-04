@@ -9,8 +9,8 @@ module.exports = function (element, id) {
             if (element.toLowerCase() === "computer") resolve(result[0].Computer);
             if (element.toLowerCase() === "house") resolve(result[0].House);
             if (element.toLowerCase() === "createdat") resolve(result[0].CreatedAt)
-            if (element.toLowerCase() === "Sleep") resolve(result[0].Sleep)
-            if (element.toLowerCase() === "Stream") resolve(result[0].Stream)
+            if (element.toLowerCase() === "sleep") resolve(result[0].Sleep)
+            if (element.toLowerCase() === "stream") resolve(result[0].Stream)
         });
     });
 };

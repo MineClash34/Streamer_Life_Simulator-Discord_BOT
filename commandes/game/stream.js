@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const commentaire = require("../../data/commentaire.json").comList;
 var streamUser = new Set();
 var streamChannel = new Set();
-exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText, addMaj) => {
+exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText, addMaj, queryAsync) => {
     if (streamUser.has(message.author.id)) return message.reply(Lang.YouAlreadyStream);
     if (streamChannel.has(message.channel.id)) return message.reply(Lang.ChannelHasStream);
     streamChannel.add(message.channel.id);
@@ -51,11 +51,13 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
     */
 
     await message.channel.send(Lang.ComWillSpawned).then(async (FirstStreamMessage) => {
+        FirstStreamMessage.delete({timeout: 35000})
         await FirstStreamMessage.react("739210690450948107");
         await FirstStreamMessage.react("739211087206940742");
         sendNewCommentaire(FirstStreamMessage);
     });
     await message.channel.send(Lang.ComWillSpawned).then(async (SecondStreamMessage) => {
+        SecondStreamMessage.delete({timeout: 35000})
         await SecondStreamMessage.react("739210690450948107");
         await SecondStreamMessage.react("739211087206940742");
         setTimeout(() => {sendNewCommentaire(SecondStreamMessage)}, 15000);
@@ -69,11 +71,11 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
         streamChannel.delete(message.channel.id);
         streamUser.delete(message.author.id);
         var Joy = Math.round(goodResponse * 100 / totalCom)
-        var newSubs = Math.round(Math.random() * (await getProfilElement("Subs", message.author.id) * 15 / 100) + (await getProfilElement("Subs", message.author.id) * 5 / 100)) * Joy;
+        var newSubs = Math.round(Math.random() * (await getProfilElement("Subs", message.author.id) * 15 / 100) + (await getProfilElement("Subs", message.author.id) * 5 / 100) * Joy / 100);
         if (newSubs === 0) newSubs = 10;
-        var Viewers = Math.round(Math.random() * (await getProfilElement("Subs", message.author.id) * (Math.round(Math.random() * 20) + 20) / 100)) * Joy;
+        var Viewers = Math.round(Math.random() * (await getProfilElement("Subs", message.author.id) * (Math.round(Math.random() * 20) + 20) / 100) * Joy / 100);
         if (Viewers === 0) Viewers = 30;
-        var Donation = Math.round(Math.random() * (await getProfilElement("Subs", message.author.id) * (Math.round(Math.random() * 15) + 10) / 100)) * Joy;
+        var Donation = Math.round(Math.random() * (await getProfilElement("Subs", message.author.id) * (Math.round(Math.random() * 15) + 10) / 100) * Joy / 100);
         if (Donation === 0) Donation = 10;
         var Sponsor = 0;
         var Product = 0;
@@ -81,11 +83,12 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
         let endEmbed = new Discord.MessageEmbed()
         .setAuthor(Lang.StreamEnd.replace("{game}", await getProfilElement("Game", message.author.id)), message.author.displayAvatarURL())
         .setColor(0xff3030)
-        .addField(`${addEmoji("stats")} Statistiques`, `**•》** ${Lang.Views} : \`${Viewers}\`\n**•》** ${await addMaj(Lang.Subscriber)} : \`${newSubs}\``)
+        .addField(`${addEmoji("stats")} Statistiques`, `**•》** ${Lang.Views} : \`${Viewers}\`\n**•》** ${addMaj(Lang.Subscriber)} : \`${newSubs}\`\n**•》** Stream : \`${await getProfilElement("Stream", message.author.id)}\` => \`${await getProfilElement("Stream", message.author.id) + 1}\``)
         .addField(`💰 ${Lang.Money}`, `**•》** ${Lang.Donation} : \`${Donation}\`\n**•》** ${Lang.Sponsor} : \`${Sponsor}\`\n**•》** ${Lang.Product} : \`${Product}\``)
         .addField(`${addEmoji("Like")} \`${Joy}\`%`, `\u200B`)
         .setFooter(`Streamer Life Simulator Bot, By ${process.env.OWNER}`, process.env.PPURL)
         .setTimestamp();
-        message.channel.send(endEmbed)
+        message.channel.send(endEmbed);
+        queryAsync(`UPDATE profile SET Stream = ${await getProfilElement("Stream", message.author.id) + 1}, Sleep = ${await getProfilElement("Sleep", message.author.id) + 1}, Subscriber = ${await getProfilElement("Subs", message.author.id) + newSubs}, Money = ${await getProfilElement("Money", message.author.id) + Donation + Sponsor + Product} WHERE DiscordID = '${message.author.id}'`);
     }, 30000);
 };
