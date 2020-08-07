@@ -7,7 +7,7 @@ module.exports = async function (message) {
         const Lang = require(`../lang/${await getProfilElement("Lang", message.author.id)}.json`)
         if (Math.round(Math.random() * 100) < 10) return;
         if (Math.round(Math.random() * 100) < 5) var duration = 0;
-        else var duration = Math.round(Math.random() * 15);
+        else var duration = Math.round(Math.random() * 10 + 5);
         if (duration === 0) var durationStr = Lang.IllimityPart
         else var durationStr = `${duration} ${Lang.Days}`
         var newPart = require(`../data/sponsor${await getProfilElement("Lang", message.author.id)}.json`).sponsor[Math.ceil(Math.random() * require(`../data/sponsor${await getProfilElement("Lang", message.author.id)}.json`).sponsor.length) - 1];

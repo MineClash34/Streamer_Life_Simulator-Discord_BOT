@@ -21,7 +21,8 @@
     "Product": "Produits dérivés",
     "YouAlreadyStream": "vous êtes déjà en stream...",
     "ChannelHasStream": "Il y a déjà un stream en cours dans ce channel. Pour des raisons de **lag**, vous ne pouvez pas lancer plusieurs stream dans un même channel. Veuillez changer de channel ou patienter jusqu'à la fin du stream.",
-    "PartAsk": "**•》** Vous avez reçu une demande de partenariat de la part de **{part}**.\n**•》** Le partenaire propose de vous verser `{payout}` tous les jours sur une période de : **{periode}**.\n\n**•》** Pour accepter réagissez avec : ✅.\nPour refuser réagissez avec : ❌.",
+    "newPartnerOffer": "Nouvelle Offre de Partenariat !",
+    "PartAsk": "**•》** Vous avez reçu une demande de partenariat de la part de **{part}**.\n**•》** Le partenaire propose de vous verser `{payout}` tous les jours sur une période de : **{periode}**.\n\n**•》** Pour accepter réagissez avec : ✅.\n**•》** Pour refuser réagissez avec : ❌.",
     "Days": "Jours",
     "IllimityPart": "période illimité."
 }
