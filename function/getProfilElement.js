@@ -3,6 +3,7 @@ module.exports = function (element, id) {
     return new Promise(function (resolve, reject) {
         con.query(`SELECT * FROM profile WHERE DiscordID = ${id}`, function (err, result)  {
             if (err) return reject(err);
+            if (element.toLowerCase() === "lang") resolve(result[0].Lang);
             if (element.toLowerCase() === "money") resolve(result[0].Money);
             if (element.toLowerCase() === "subs") resolve(result[0].Subscriber);
             if (element.toLowerCase() === "game") resolve(result[0].Game);
