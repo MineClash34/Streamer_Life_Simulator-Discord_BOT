@@ -1,12 +1,12 @@
 const Discord = require("discord.js");
-const commentaire = require("../../data/commentaire.json").comList;
 var streamUser = new Set();
 var streamChannel = new Set();
-exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText, addMaj, queryAsync) => {
+exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText, addMaj, queryAsync, newPartenaire) => {
     if (streamUser.has(message.author.id)) return message.reply(Lang.YouAlreadyStream);
     if (streamChannel.has(message.channel.id)) return message.reply(Lang.ChannelHasStream);
     streamChannel.add(message.channel.id);
     streamUser.add(message.author.id);
+    const commentaire = require(`../../data/commentaire${await getProfilElement("Lang", message.author.id)}.json`).comList;
     var goodResponse = 0;
     var streamOnline = true;
     var totalCom = 0;
@@ -89,6 +89,7 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
         .setFooter(`Streamer Life Simulator Bot, By ${process.env.OWNER}`, process.env.PPURL)
         .setTimestamp();
         message.channel.send(endEmbed);
+        newPartenaire(message)
         queryAsync(`UPDATE profile SET Stream = ${await getProfilElement("Stream", message.author.id) + 1}, Sleep = ${await getProfilElement("Sleep", message.author.id) + 1}, Subscriber = ${await getProfilElement("Subs", message.author.id) + newSubs}, Money = ${await getProfilElement("Money", message.author.id) + Donation + Sponsor + Product} WHERE DiscordID = '${message.author.id}'`);
     }, 30000);
 };
