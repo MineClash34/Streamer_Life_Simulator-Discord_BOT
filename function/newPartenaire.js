@@ -1,9 +1,10 @@
 const queryAsync = require("./queryAsync.js");
-const getProfilElement = require("./getProfilElement.js")
+const getProfilElement = require("./getProfilElement.js");
 const Discord = require("discord.js");
 module.exports = async function (message) {
     var rows = await queryAsync(`SELECT * FROM partenaire WHERE DiscordID = ${message.author.id}`);
     if (rows[0].Part1 === "/" || rows[0].Part2 === "/" || rows[0].Part3 === "/") {
+        const Lang = require(`../lang/${await getProfilElement("Lang", message.author.id)}.json`)
         if (Math.round(Math.random() * 100) < 10) return;
         if (Math.round(Math.random() * 100) < 5) var duration = 0;
         else var duration = Math.round(Math.random() * 15);
