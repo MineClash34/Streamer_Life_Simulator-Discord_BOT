@@ -10,7 +10,7 @@ module.exports = async function (message) {
         else var duration = Math.round(Math.random() * 15);
         if (duration === 0) var durationStr = Lang.IllimityPart
         else var durationStr = `${duration} ${Lang.Days}`
-        var newPart = require(`../data/sponsor${await getProfilElement("Lang", message.author.id)}.json`).sponsor[Math.ceil(Math.random() * require(`../../data/sponsor${await getProfilElement("Lang", message.author.id)}.json`).sponsor.length) - 1];
+        var newPart = require(`../data/sponsor${await getProfilElement("Lang", message.author.id)}.json`).sponsor[Math.ceil(Math.random() * require(`../data/sponsor${await getProfilElement("Lang", message.author.id)}.json`).sponsor.length) - 1];
         var partPayout = await getProfilElement("Subs", message.author.id) * 0.35;
         let newPartEmbed = new Discord.MessageEmbed()
         .setAuthor(Lang.newPartnerOffer, message.author.displayAvatarURL())
