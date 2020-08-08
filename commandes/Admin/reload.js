@@ -2,7 +2,7 @@ const commandList = require("../../index.js").cmdList;
 const Enmap = require("enmap")
 const fs = require("fs")
 exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText) => {
-    if (!message.author.id === process.env.MYID) return;
+    if (message.author.id !== process.env.MYID) return;
     var requete = message.content.split(" ")[1];
     if (!requete) return message.reply("Précise moi une commande :)");
         var commandFilter = commandList.filter(command => command.toLowerCase().startsWith(requete));

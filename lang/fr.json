@@ -22,7 +22,9 @@
     "YouAlreadyStream": "vous êtes déjà en stream...",
     "ChannelHasStream": "Il y a déjà un stream en cours dans ce channel. Pour des raisons de **lag**, vous ne pouvez pas lancer plusieurs stream dans un même channel. Veuillez changer de channel ou patienter jusqu'à la fin du stream.",
     "newPartnerOffer": "Nouvelle Offre de Partenariat !",
-    "PartAsk": "**•》** Vous avez reçu une demande de partenariat de la part de **{part}**.\n**•》** Le partenaire propose de vous verser `{payout}` tous les jours sur une période de : **{periode}**.\n\n**•》** Pour accepter réagissez avec : ✅.\n**•》** Pour refuser réagissez avec : ❌.",
+    "PartAsk": "**•》** Vous avez reçu une demande de partenariat de la part {part}.\n**•》** Le partenaire propose de vous verser `{payout}`$ tous les jours sur une période de : **{periode}**.\n\n**•》** Pour accepter réagissez avec : ✅.\n**•》** Pour refuser réagissez avec : ❌.",
     "Days": "Jours",
-    "IllimityPart": "période illimité."
+    "IllimityPart": "période illimité.",
+    "PartAccept": "Vous avez correctement accepter l'offre de partenariat {part}. Il vous versera donc la somme de `{payout}`$ pendant : {periode}.",
+    "PartRefused": "Vous avez refusé l'offre de partenariat {part}."
 }

@@ -4,20 +4,38 @@ const Discord = require("discord.js");
 module.exports = async function (message) {
     var rows = await queryAsync(`SELECT * FROM partenaire WHERE DiscordID = ${message.author.id}`);
     if (rows[0].Part1 === "/" || rows[0].Part2 === "/" || rows[0].Part3 === "/") {
+        var partNumber = rows[0].Part1 === "/" ? "Part1" : rows[0].Part2 === "/" ? "Part2" : "Part3";
         const Lang = require(`../lang/${await getProfilElement("Lang", message.author.id)}.json`)
         if (Math.round(Math.random() * 100) < 10) return;
         if (Math.round(Math.random() * 100) < 5) var duration = 0;
         else var duration = Math.round(Math.random() * 10 + 5);
-        if (duration === 0) var durationStr = Lang.IllimityPart
-        else var durationStr = `${duration} ${Lang.Days}`
+        if (duration === 0) var durationStr = Lang.IllimityPart;
+        else var durationStr = `${duration} ${Lang.Days}`;
         var newPart = require(`../data/sponsor${await getProfilElement("Lang", message.author.id)}.json`).sponsor[Math.ceil(Math.random() * require(`../data/sponsor${await getProfilElement("Lang", message.author.id)}.json`).sponsor.length) - 1];
-        var partPayout = await getProfilElement("Subs", message.author.id) * 0.35;
+        var partPayout = Math.round(await getProfilElement("Subs", message.author.id) * 0.35);
         let newPartEmbed = new Discord.MessageEmbed()
         .setAuthor(Lang.newPartnerOffer, message.author.displayAvatarURL())
         .setColor(0x00ffff)
         .setDescription(`${Lang.PartAsk.replace("{part}", newPart).replace("{payout}", partPayout).replace("{periode}", durationStr)}`)
         .setFooter(`Streamer Life Simulator Bot, By ${process.env.OWNER}`, process.env.PPURL)
         .setTimestamp();
-        message.channel.send(`<@${message.author.id}>`, newPartEmbed);
+        message.channel.send(`<@${message.author.id}>`, newPartEmbed).then(async (partMessage) => {
+            await partMessage.react("✅");
+            await partMessage.react("❌");
+            let filter = (reaction, userReact) => {
+                return ["✅", "❌"].includes(reaction.emoji.name) && userReact.id === message.author.id;
+            };
+            partMessage.awaitReactions(filter, {max: 1, time: 90000, errors: ['time']})
+            .then(collected => {
+                const reaction = collected.first();
+                if (reaction.emoji.name === "✅") {
+                    queryAsync(`UPDATE partenaire SET ${partNumber} = '${newPart}:${partPayout}:${duration.toString()}' WHERE DiscordID = ${message.author.id}`);
+                    message.channel.send(Lang.PartAccept.replace("{part}", newPart).replace("{payout}", partPayout).replace("{periode}", durationStr));
+                };
+                if (reaction.emoji.name === "❌") {
+                    message.channel.send(Lang.PartRefused.replace("{part}", newPart));
+                };
+            });
+        });
     };
 };

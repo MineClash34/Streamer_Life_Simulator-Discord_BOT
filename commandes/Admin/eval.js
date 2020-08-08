@@ -1,5 +1,5 @@
 exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText, addMaj, queryAsync) => {
-    if (!message.author.id === process.env.MYID) return;
+    if (message.author.id !== process.env.MYID) return;
     args.shift();
     try {
         var code = args.join(" ");
