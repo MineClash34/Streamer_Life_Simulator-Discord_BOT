@@ -29,7 +29,7 @@ module.exports = async function (message) {
             .then(collected => {
                 const reaction = collected.first();
                 if (reaction.emoji.name === "✅") {
-                    queryAsync(`UPDATE partenaire SET ${partNumber} = '${newPart}:${partPayout}:${duration.toString()}' WHERE DiscordID = ${message.author.id}`);
+                    queryAsync(`UPDATE partenaire SET ${partNumber} = "${newPart}:${partPayout}:${duration.toString()}" WHERE DiscordID = ${message.author.id}`);
                     message.channel.send(Lang.PartAccept.replace("{part}", newPart).replace("{payout}", partPayout).replace("{periode}", durationStr));
                 };
                 if (reaction.emoji.name === "❌") {

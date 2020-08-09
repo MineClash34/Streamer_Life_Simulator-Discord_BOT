@@ -26,5 +26,10 @@
     "Days": "Jours",
     "IllimityPart": "période illimité.",
     "PartAccept": "Vous avez correctement accepter l'offre de partenariat {part}. Il vous versera donc la somme de `{payout}`$ pendant : {periode}.",
-    "PartRefused": "Vous avez refusé l'offre de partenariat {part}."
+    "PartRefused": "Vous avez refusé l'offre de partenariat {part}.",
+    "PartList": "Liste de vos Partenaires",
+    "NoPart": "Pas de partenariat",
+    "Part": "Partenariat",
+    "Payout": "Payement",
+    "Period": "Période"
 }
