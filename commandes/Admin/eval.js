@@ -1,4 +1,6 @@
-exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText, addMaj, queryAsync) => {
+const fs = require("fs")
+const Discord = require("discord.js")
+exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText, addMaj, queryAsync, newPartenaire) => {
     if (message.author.id !== process.env.MYID) return;
     args.shift();
     try {

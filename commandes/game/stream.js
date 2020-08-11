@@ -71,20 +71,24 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
         streamChannel.delete(message.channel.id);
         streamUser.delete(message.author.id);
         var Joy = Math.round(goodResponse * 100 / totalCom)
-        var newSubs = Math.round(Math.random() * (await getProfilElement("Subs", message.author.id) * 15 / 100) + (await getProfilElement("Subs", message.author.id) * 5 / 100) * Joy / 100);
+        var newSubs = Math.round(await getProfilElement("Subs", message.author.id) * ((Math.round(Math.random() * 30) + 30) / 100) * (Joy / 100))
         if (newSubs === 0) newSubs = 10;
-        var Viewers = Math.round(Math.random() * (await getProfilElement("Subs", message.author.id) * (Math.round(Math.random() * 20) + 20) / 100) * Joy / 100);
+        var Viewers = Math.round(await getProfilElement("Subs", message.author.id) * ((Math.round(Math.random() * 100) + 75) / 100) * (Joy / 100))
         if (Viewers === 0) Viewers = 30;
         var Donation = Math.round(Math.random() * (await getProfilElement("Subs", message.author.id) * (Math.round(Math.random() * 15) + 10) / 100) * Joy / 100);
         if (Donation === 0) Donation = 10;
-        var Sponsor = 0;
+        var partResult = await queryAsync(`SELECT * FROM partenaire WHERE DiscordID = ${message.author.id}`);
+        var _1 = partResult[0].Part1 === "/" ? "0" : partResult[0].Part1.split(":")[1]
+        var _2 = partResult[0].Part2 === "/" ? "0" : partResult[0].Part2.split(":")[1]
+        var _3 = partResult[0].Part3 === "/" ? "0" : partResult[0].Part3.split(":")[1]
+        var Sponsor = Number(_1) + Number(_2) + Number(_3);
         var Product = 0;
         streamOnline = false;
         let endEmbed = new Discord.MessageEmbed()
         .setAuthor(Lang.StreamEnd.replace("{game}", await getProfilElement("Game", message.author.id)), message.author.displayAvatarURL())
         .setColor(0xff3030)
         .addField(`${addEmoji("stats")} Statistiques`, `**•》** ${Lang.Views} : \`${Viewers}\`\n**•》** ${addMaj(Lang.Subscriber)} : \`${newSubs}\`\n**•》** Stream : \`${await getProfilElement("Stream", message.author.id)}\` => \`${await getProfilElement("Stream", message.author.id) + 1}\``)
-        .addField(`💰 ${Lang.Money}`, `**•》** ${Lang.Donation} : \`${Donation}\`\n**•》** ${Lang.Sponsor} : \`${Sponsor}\`\n**•》** ${Lang.Product} : \`${Product}\``)
+        .addField(`💰 ${Lang.Money}`, `**•》** ${Lang.Donation} : \`${Donation}\`\n**•》** ${Lang.Sponsor} : \`${Sponsor} (${_1} + ${_2} + ${_3})\`\n**•》** ${Lang.Product} : \`${Product}\``)
         .addField(`${addEmoji("Like")} \`${Joy}\`%`, `\u200B`)
         .setFooter(`Streamer Life Simulator Bot, By ${process.env.OWNER}`, process.env.PPURL)
         .setTimestamp();
