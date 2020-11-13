@@ -13,7 +13,6 @@ module.exports = async function (message) {
         _Message.channel.awaitMessages(filter, {max: 1, time: 90000, errors: ['time']})
         .then(async collected => {
             const messageCollected = collected.first();
-            console.log(messageCollected.content)
             if (messageCollected.content) {
                 if (isNaN(messageCollected.content) || Number(messageCollected.content) < 0) {
                     partSelect(_Message);

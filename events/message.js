@@ -18,6 +18,7 @@ const CleanText = require("../function/CleanText.js")
 const addMaj = require("../function/addMaj.js")
 const queryAsync = require("../function/queryAsync.js")
 const newPartenaire = require("../function/newPartenaire.js");
+const updatePart = require("../function/updatePart.js");
 
 /*
 Other
@@ -41,6 +42,6 @@ module.exports = async (client, message) => {
     getDBConnection.query(`SELECT * FROM profile WHERE DiscordID = ${message.author.id}`, function(err, result) {
         if (result.length <= 0) return register(message);
         const args = message.content.split(" ");
-        cmd.run(message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText, addMaj, queryAsync, newPartenaire);
+        cmd.run(message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText, addMaj, queryAsync, newPartenaire, updatePart);
     });
 };

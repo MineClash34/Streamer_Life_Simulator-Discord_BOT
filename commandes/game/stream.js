@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 var streamUser = new Set();
 var streamChannel = new Set();
-exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText, addMaj, queryAsync, newPartenaire) => {
+exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getProfilElement, Setup, CleanText, addMaj, queryAsync, newPartenaire, updatePart) => {
     if (streamUser.has(message.author.id)) return message.reply(Lang.YouAlreadyStream);
     if (streamChannel.has(message.channel.id)) return message.reply(Lang.ChannelHasStream);
     streamChannel.add(message.channel.id);
@@ -68,6 +68,7 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
     */
 
     setTimeout( async () => {
+        streamOnline = false;
         streamChannel.delete(message.channel.id);
         streamUser.delete(message.author.id);
         var Joy = Math.round(goodResponse * 100 / totalCom)
@@ -83,7 +84,6 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
         var _3 = partResult[0].Part3 === "/" ? "0" : partResult[0].Part3.split(":")[1]
         var Sponsor = Number(_1) + Number(_2) + Number(_3);
         var Product = 0;
-        streamOnline = false;
         let endEmbed = new Discord.MessageEmbed()
         .setAuthor(Lang.StreamEnd.replace("{game}", await getProfilElement("Game", message.author.id)), message.author.displayAvatarURL())
         .setColor(0xff3030)
@@ -94,6 +94,7 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
         .setTimestamp();
         message.channel.send(endEmbed);
         newPartenaire(message)
+        updatePart(message)
         queryAsync(`UPDATE profile SET Stream = ${await getProfilElement("Stream", message.author.id) + 1}, Sleep = ${await getProfilElement("Sleep", message.author.id) + 1}, Subscriber = ${await getProfilElement("Subs", message.author.id) + newSubs}, Money = ${await getProfilElement("Money", message.author.id) + Donation + Sponsor + Product}, Views = ${await getProfilElement("Views", message.author.id) + Viewers} WHERE DiscordID = '${message.author.id}'`);
     }, 30000);
 };
