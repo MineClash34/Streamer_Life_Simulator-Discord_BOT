@@ -25,11 +25,18 @@
     "PartAsk": "**•》** Vous avez reçu une demande de partenariat de la part {part}.\n**•》** Le partenaire propose de vous verser `{payout}`$ tous les jours sur une période de : **{periode}**.\n\n**•》** Pour accepter réagissez avec : ✅.\n**•》** Pour refuser réagissez avec : ❌.",
     "Days": "Jours",
     "IllimityPart": "période illimité.",
+    "Illimity": "Illimité",
     "PartAccept": "Vous avez correctement accepter l'offre de partenariat {part}. Il vous versera donc la somme de `{payout}`$ pendant : {periode}.",
     "PartRefused": "Vous avez refusé l'offre de partenariat {part}.",
     "PartList": "Liste de vos Partenaires",
     "NoPart": "Pas de partenariat",
     "Part": "Partenariat",
     "Payout": "Payement",
-    "Period": "Période"
+    "Period": "Période",
+    "Requirement": "Pré-requis",
+    "Price": "Prix",
+    "Level": "Niveau",
+    "isNaN": "Veuillez indiquez un nombre entier positif.",
+    "ChoosePart": "indiquez quel partenariat souhaitez-vous remplacer. Tapez `cancel` pour annuler.",
+    "Canceled": "vous avez correctement annulé l'opération."
 }

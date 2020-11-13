@@ -12,6 +12,7 @@ module.exports = function (element, id) {
             if (element.toLowerCase() === "createdat") resolve(result[0].CreatedAt)
             if (element.toLowerCase() === "sleep") resolve(result[0].Sleep)
             if (element.toLowerCase() === "stream") resolve(result[0].Stream)
+            if (element.toLowerCase() === "views") resolve(result[0].Views)
         });
     });
 };

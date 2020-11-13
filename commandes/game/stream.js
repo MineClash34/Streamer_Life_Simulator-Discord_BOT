@@ -94,6 +94,6 @@ exports.run = async (message, Lang, args, getRandomColor, client, addEmoji, getP
         .setTimestamp();
         message.channel.send(endEmbed);
         newPartenaire(message)
-        queryAsync(`UPDATE profile SET Stream = ${await getProfilElement("Stream", message.author.id) + 1}, Sleep = ${await getProfilElement("Sleep", message.author.id) + 1}, Subscriber = ${await getProfilElement("Subs", message.author.id) + newSubs}, Money = ${await getProfilElement("Money", message.author.id) + Donation + Sponsor + Product} WHERE DiscordID = '${message.author.id}'`);
+        queryAsync(`UPDATE profile SET Stream = ${await getProfilElement("Stream", message.author.id) + 1}, Sleep = ${await getProfilElement("Sleep", message.author.id) + 1}, Subscriber = ${await getProfilElement("Subs", message.author.id) + newSubs}, Money = ${await getProfilElement("Money", message.author.id) + Donation + Sponsor + Product}, Views = ${await getProfilElement("Views", message.author.id) + Viewers} WHERE DiscordID = '${message.author.id}'`);
     }, 30000);
 };
